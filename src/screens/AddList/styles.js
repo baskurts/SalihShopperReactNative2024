@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   button: {
-    backgroundColor: 'black',
+    backgroundColor: 'red',
     position: 'absolute',
     width: 60,
     height: 60,
