@@ -3,6 +3,8 @@ import { View, Text, TextInput, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 
+const database = require('../../components/Handlers/database.js');
+
 const AddListScreen = props => {
 
     const navigation = useNavigation();
@@ -24,8 +26,15 @@ const AddListScreen = props => {
             alert('Please enter a shopping list date.');
             return;
         }
+
+        try {
+            database.AddList(name, store, date);
+        } catch (error) {
+            console.log('Error adding list ' + error);
+        }
+
         alert(name + ' Added.');
-        navigation.navigate('Start Shopping!');
+        // navigation.navigate('Start Shopping!');
     }
 
   return (
