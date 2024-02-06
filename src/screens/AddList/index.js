@@ -28,7 +28,7 @@ const AddListScreen = props => {
         }
 
         try {
-            database.AddList(name, store, date);
+            database.addList(name, store, date);
         } catch (error) {
             console.log('Error adding list ' + error);
         }
