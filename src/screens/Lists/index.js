@@ -39,11 +39,18 @@ const ListsScreen = props => {
               for (let i = 0; i < len; i++){
                 // push a row of data at a time onto results array
                 let item = res.rows.item(i);
+            if (item.priority == 'HIGH') {
+              color = 'red'
+              } else {
+                color = 'green'
+                }
                 results.push({
                   id: item.id,
                   name: item.name,
                   store: item.store,
                   date: item.date,
+                  priority: item.priority,
+                  color_priority: color
                 });
               }
               // assign results array to lists state variable 

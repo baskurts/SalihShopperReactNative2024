@@ -30,6 +30,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexWrap: 'wrap',
   },
+  priority: {
+    fontSize: 18,
+    marginLeft: 10,
+    flex: 1,
+    flexWrap: 'wrap',
+  },
 });
 
 export default styles;
