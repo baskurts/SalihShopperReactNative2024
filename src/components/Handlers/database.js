@@ -6,6 +6,7 @@ const shopperDB = openDatabase({name: 'Shopper.db'});
 
 // create constant that contains the name of the lists table
 const listsTableName = 'lists';
+const itemsTableName = 'items';
 
 module.exports = {
     // declare function that will create lists table
@@ -21,9 +22,9 @@ module.exports = {
                     date TEXT,
                     priority TEXT
                 );`,
-                // arguments passsed when using SQL prepared statements
+                // arguments passed when using SQL prepared statements
                 [],
-                // callback functions to handle results 
+                // callback functions to handle results
                 () => {
                     console.log('Lists table created successfully.');
                 },
@@ -38,17 +39,62 @@ module.exports = {
     addList: async function (name, store, date, priority) {
         // declare transaction that will execute the SQL
         (await shopperDB).transaction(txn => {
-            // execute SQL
+            //execute SQL
             txn.executeSql(
                 `INSERT INTO ${listsTableName} (name, store, date, priority) VALUES ("${name}", "${store}", "${date}", "${priority}")`,
-                // arguments passsed when using SQL prepared statements
+                // arguments passed when using SQL prepared statements
                 [],
-                // callback functions to handle results 
+                // callback functions to handle results
                 () => {
-                    console.log(name + "added successfully.");
+                    console.log(name + " added successfully.");
                 },
                 error => {
                     console.log('Error adding list ' + error.message);
+                },
+            );
+        });
+    },
+
+    // declare function that will create lists table
+    createItemsTable: async function () {
+        // declare transaction that will execute SQL
+        (await shopperDB).transaction(txn => {
+            // execute the SQL
+            txn.executeSql(
+                `CREATE TABLE IF NOT EXISTS ${itemsTableName}(
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT(100),
+                    price REAL,
+                    quantity INTEGER
+                );`,
+                // arguments passed when using SQL prepared statements
+                [],
+                // callback functions to handle results
+                () => {
+                    console.log('Items table created successfully.');
+                },
+                error => {
+                    console.log('Error creating items table ' + error.message);
+                },
+            );
+        });
+    },
+
+    // declare function that will insert a row of data into the lists table
+    addItem: async function (name, price, quantity) {
+        // declare transaction that will execute the SQL
+        (await shopperDB).transaction(txn => {
+            //execute SQL
+            txn.executeSql(
+                `INSERT INTO ${itemsTableName} (name, price, quantity) VALUES ("${name}", "${price}", "${quantity}")`,
+                // arguments passed when using SQL prepared statements
+                [],
+                // callback functions to handle results
+                () => {
+                    console.log(name + " added successfully.");
+                },
+                error => {
+                    console.log('Error adding item ' + error.message);
                 },
             );
         });

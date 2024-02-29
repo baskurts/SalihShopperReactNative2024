@@ -10,7 +10,7 @@ const TabNavigator = props => {
   return (
     <Tab.Navigator
         screenOptions={{
-            tabBarActiveTintColor: '#f15454', 
+            tabBarActiveTintColor: '#f15454',
             tabBarLabelStyle: {
                 flex: 1,
                 fontSize: 15,
@@ -18,7 +18,7 @@ const TabNavigator = props => {
                 justifyContent: 'center',
                 padding: 12,
             },
-            tabBarStyle: {display: 'flex'}, 
+            tabBarStyle: {display: 'flex'},
             tabBarIconStyle: {display: 'none'},
         }}
     >

@@ -20,26 +20,26 @@ const ExistingListScreen = props => {
     const [priority, setPriority] = useState(post.priority);
 
     const onListUpdate = () => {
-        if(!name){
+        if (!name){
             alert('Please enter a shopping list name.');
             return;
         }
-        if(!store){
+        if (!store){
             alert('Please enter a shopping list store.');
             return;
         }
-        if(!date){
-            alert('Please enter a shopping list date.');
+        if (!priority){
+            alert('Please enter a shopping list priority.');
             return;
         }
-        if(!priority){
-            alert('Please enter a shopping list priority.');
+        if (!date){
+            alert('Please enter a shopping list date.');
             return;
         }
 
         shopperDB.transaction(txn => {
             txn.executeSql(
-                `UPDATE ${listsTableName} SET name = "${name}", store = "${store}, date = "${date}", priority = "${priority}" WHERE id = "${post.id}"`,
+                `UPDATE ${listsTableName} SET name = "${name}", store = "${store}", date = "${date}", priority = "${priority}" WHERE id = "${post.id}"`,
                 [],
                 () => {
                     console.log(`${name} updated successfully`);
@@ -51,6 +51,7 @@ const ExistingListScreen = props => {
         });
 
         alert(name + ' updated!');
+
     }
 
     const onListDelete = () => {
@@ -59,7 +60,7 @@ const ExistingListScreen = props => {
             'Confirm',
             // message
             'Are you sure you want to delete this list?',
-            //code for buttons
+            // code for buttons
             [
                 {
                     text: 'Yes',

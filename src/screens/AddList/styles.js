@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   button: {
-    backgroundColor: 'red',
+    backgroundColor: 'black',
     position: 'absolute',
     width: 60,
     height: 60,
@@ -45,19 +45,56 @@ const styles = StyleSheet.create({
     color: 'black',
     borderColor: 'lightgrey',
   },
-  date: {
-    fontSize: 16,
-    borderBottomWidth: 1.0,
-    color: 'black',
-    borderColor: 'lightgrey',
-    marginBottom: 10,
-  },
   priority: {
     fontSize: 16,
     marginBottom: 15,
     borderBottomWidth: 1.0,
     color: 'black',
     borderColor: 'lightgrey',
+  },
+  date: {
+    fontSize: 16,
+    borderBottomWidth: 1.0,
+    borderColor: 'lightgrey',
+  },
+  dateButton: {
+    backgroundColor: 'red',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 10,
+    borderRadius: 30,
+  },
+  dateButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  dropdownBtnStyle: {
+    width: '100%',
+    height: 50,
+    borderRadius: 30,
+    borderWidth: 1,
+    borderColor: 'red',
+    backgroundColor: 'red',
+    marginVertical: 10,
+  },
+  dropdownBtnTxtStyle: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  dropdownDropdownStyle: {
+    borderRadius: 5,
+  },
+  dropdownRowStyle: {
+    backgroundColor: '#EFEFEF',
+  },
+  dropdownRowTxtStyle: {
+    color: '#000',
+    textAlign: 'left',
+    fontSize: 16,
   },
 });
 

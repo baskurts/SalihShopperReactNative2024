@@ -18,43 +18,49 @@ const ListsScreen = props => {
 
   const [lists, setLists] = useState([]);
 
+  var colorC = '';
+
   useEffect(() => {
     const listener = navigation.addListener('focus', () => {
       // declare empty array that will store results of SELECT
       let results = [];
       // declare transaction that will execute SELECT
       shopperDB.transaction(txn => {
-        // execute SELECT 
+        // execute SELECT
         txn.executeSql(
           `SELECT * FROM ${listsTableName}`,
           [],
-          // callback function to handle results from SELECT\
-          (_, res) =>{
-            // get the number of rows selected
+          // callback function to handle results from SELECT
+          (_, res) => {
+            // get the number of rows selected 
             let len = res.rows.length;
             console.log('Number of rows: ' + len);
+            
+
             // if more than one row of data was selected
-            if(len > 0){
+            if ( len > 0){
               // loop through the rows of data
               for (let i = 0; i < len; i++){
                 // push a row of data at a time onto results array
                 let item = res.rows.item(i);
-            if (item.priority == 'HIGH') {
-              color = 'red'
-              } else {
-                color = 'green'
+
+                if (item.priority == 'HIGH'){
+                  colorC = 'red';
+                } else if (item.priority == 'LOW'){
+                  colorC = 'green';
                 }
+
                 results.push({
                   id: item.id,
                   name: item.name,
                   store: item.store,
                   date: item.date,
                   priority: item.priority,
-                  color_priority: color
+                  color: colorC,
                 });
               }
-              // assign results array to lists state variable 
-              setLists(results); 
+              // assign results array to lists state variable
+              setLists(results);
             } else {
               // if no rows of data were selected
               // assign empty array to lists state variable
@@ -74,14 +80,14 @@ const ListsScreen = props => {
     <View style={styles.container}>
       <View>
         <FlatList
-        data={lists}
-        renderItem={({item}) => <List post={item} />}
+          data={lists}
+          renderItem={({item}) => <List post={item} />}
         />
       </View>
         <View style={styles.bottom}>
             <TouchableOpacity
                 style={styles.button}
-                onPress={() => navigation.navigate('Add List')}>
+                onPress={ () => navigation.navigate('Add List')}>
                 <Text style={styles.buttonText}>Add List</Text>
             </TouchableOpacity>
         </View>

@@ -26,15 +26,18 @@ const styles = StyleSheet.create({
   },
   date: {
     fontSize: 18,
-    marginLeft: 10,
+    marginLeft: 1,
+    marginRight: 7,
     flex: 1,
     flexWrap: 'wrap',
   },
-  priority: {
-    fontSize: 18,
-    marginLeft: 10,
+  priorityStyle: {
+    color: 'white',
+    fontSize: 20,
     flex: 1,
     flexWrap: 'wrap',
+    textAlign: 'center',
+    textAlignVertical: 'center',
   },
 });
 
