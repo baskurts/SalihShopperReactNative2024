@@ -7,6 +7,7 @@ const shopperDB = openDatabase({name: 'Shopper.db'});
 // create constant that contains the name of the lists table
 const listsTableName = 'lists';
 const itemsTableName = 'items';
+const listItemsTableName = 'list_items';
 
 module.exports = {
     // declare function that will create lists table
@@ -99,4 +100,49 @@ module.exports = {
             );
         });
     },
+
+    // declare function that will create lists table
+    createListItemsTable: async function () {
+        // declare transaction that will execute SQL
+        (await shopperDB).transaction(txn => {
+            // execute the SQL
+            txn.executeSql(
+                `CREATE TABLE IF NOT EXISTS ${listItemsTableName}(
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    list_id INTEGER,
+                    item_id INTEGER
+                );`,
+                // arguments passed when using SQL prepared statements
+                [],
+                // callback functions to handle results
+                () => {
+                    console.log('List items created successfully.');
+                },
+                error => {
+                    console.log('Error creating list items table ' + error.message);
+                },
+            );
+        });
+    },
+
+    // declare function that will insert a row of data into the lists table
+    addListItem: async function (list_id, item_id) {
+        // declare transaction that will execute the SQL
+        (await shopperDB).transaction(txn => {
+            //execute SQL
+            txn.executeSql(
+                `INSERT INTO ${listItemsTableName} (list_id, item_id) VALUES ("${list_id}", "${item_id}")`,
+                // arguments passed when using SQL prepared statements
+                [],
+                // callback functions to handle results
+                () => {
+                    console.log("List item added successfully.");
+                },
+                error => {
+                    console.log('Error adding list item ' + error.message);
+                },
+            );
+        });
+    },
+
 };
