@@ -14,6 +14,8 @@ const Item = props => {
     const navigation = useNavigation();
 
     const onPress = () => {
+        navigation.navigate('Existing Item', {post: post});
+        
         if (post.list_id) {
             try {
                 database.addListItem(post.list_id, post.id);
