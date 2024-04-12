@@ -165,12 +165,20 @@ const ExistingListScreen = props => {
             )}
             {!datePicker && (
                 <View>
-                    <Pressable onPress={showDatePicker} style={styles.dateButton}>
+                    <Pressable 
+                        accessible={true}
+                        accessibilityRole='button'
+                        accessibilityLabel='Double tap to open date picker'
+                        accessibilityHint='Opens date picker'
+                        onPress={showDatePicker} 
+                        style={styles.dateButton}>
                         <Text style={styles.dateButtonText}>Select A Date</Text>
                     </Pressable>
                 </View>
             )}
             <TextInput 
+                accessible={true}
+                accessibilityLabel={selectedDate}
                 value={selectedDate}
                 style={styles.date}
                 placeholder={'Selected Date'}
@@ -178,16 +186,38 @@ const ExistingListScreen = props => {
             />
         </View>
         <View style={styles.bottomContainer}>
-            <Pressable style={styles.updateButton} onPress={onListUpdate}>
+            <Pressable 
+                accessible={true}
+                accessibilityRole='button'
+                accessibilityLabel='Double tap to update list'
+                style={styles.updateButton} 
+                onPress={onListUpdate}>
                 <Text style={styles.buttonText}>Update</Text>
             </Pressable>
-            <Pressable style={styles.deleteButton} onPress={onListDelete}>
+            <Pressable 
+                accessible={true}
+                accessibilityRole='button'
+                accessibilityLabel='Double tap to delete list'
+                style={styles.deleteButton} 
+                onPress={onListDelete}>
                 <Text style={styles.buttonText}>Delete</Text>
             </Pressable>
-            <Pressable style={styles.addButton} onPress={onAddItem}>
+            <Pressable 
+                accessible={true}
+                accessibilityRole='button'
+                accessibilityLabel='Double tap to add an item to this list'
+                accessibilityHint='Opens add item screen'
+                style={styles.addButton} 
+                onPress={onAddItem}>
                 <Text style={styles.buttonText}>Add Item</Text>
             </Pressable>
-            <Pressable style={styles.viewButton} onPress={onViewList}>
+            <Pressable 
+                accessible={true}
+                accessibilityRole='button'
+                accessibilityLabel='Double tap to view items added to this list'
+                accessibilityHint='Opens view items screen'
+                style={styles.viewButton} 
+                onPress={onViewList}>
                 <Text style={styles.buttonText}>View Items</Text>
             </Pressable>
         </View>

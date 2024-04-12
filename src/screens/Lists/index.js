@@ -3,7 +3,6 @@ import styles from './styles';
 import { View, TouchableOpacity, Text, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import List from '../../components/List';
-// import openDatabase hook
 import { openDatabase } from "react-native-sqlite-storage";
 
 // create constant object that refers to database
@@ -86,6 +85,10 @@ const ListsScreen = props => {
       </View>
         <View style={styles.bottom}>
             <TouchableOpacity
+                accessible={true}
+                accessibilityRole='button'
+                accessibilityLabel='Double tap to add a list'
+                accessibilityHint='Goes to add list screen'
                 style={styles.button}
                 onPress={ () => navigation.navigate('Add List')}>
                 <Text style={styles.buttonText}>Add List</Text>
